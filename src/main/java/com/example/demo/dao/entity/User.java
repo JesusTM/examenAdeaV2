@@ -14,51 +14,52 @@ import javax.persistence.Table;
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "LOGIN")
 	private Long login;
 	
-	@Column
+	@Column(name = "PASSWORD")
 	private String password;
 
-	@Column
+	@Column(name = "NOMBRE")
 	private String nombre;
 	
-	@Column
+	@Column(name = "CLIENTE")
 	private String cliente;
 	
-	@Column
+	@Column(name = "EMAIL")
 	private String email;
 
-	@Column
+	@Column(name = "FECHAALTA")
 	private LocalDateTime fechaAlta;
 	
-	@Column
+	@Column(name = "FECHABAJA")
 	private LocalDateTime fechaBaja;
 	
-	@Column
+	@Column(name = "STATUS")
 	private char status;
 	
-	@Column
+	@Column(name = "INTENTOS")
 	private int intentos;
 	
-	@Column
+	@Column(name = "FECHAREVOCADO")
 	private LocalDateTime fechaRevocado;
 	
-	@Column
+	@Column(name = "FECHA_VIGENCIA")
 	private LocalDateTime fechaVigencia;
 	
-	@Column
+	@Column(name = "NO_ACCESO")
 	private int noAcceso;
 	
-	@Column
+	@Column(name = "APELLIDO_PATERNO")
 	private String apellidoPaterno;
 	
-	@Column
+	@Column(name = "APELLIDO_MATERNO")
 	private String apellidoMaterno;
 	
-	@Column
+	@Column(name = "AREA")
 	private String area;
 	
-	@Column
+	@Column(name = "FECHAMODIFICACION")
 	private LocalDateTime fechaModificacion;
 	
 	public boolean isPasswordExpired() {
