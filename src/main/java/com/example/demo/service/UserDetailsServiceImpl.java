@@ -34,7 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
       grantList.add(grantedAuthority);
       
       UserDetails user = (UserDetails) new User(registerUser.getNombre(), registerUser.getPassword(), true,
-    		  true, registerUser.isPasswordExpired(), false, grantList);
+    		  true, registerUser.isPasswordExpired(), true, grantList);
       return user;
     }
 }

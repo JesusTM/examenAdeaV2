@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,17 +16,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.dao.entity.User;
+import com.example.demo.dao.UserRepository;
 import com.example.demo.service.UserService;
 
 @Controller
 public class LoginController {
 	@Autowired 
+	private UserRepository userRepository;
+	
+	@Autowired 
     private UserService userService;
 
-	@GetMapping("/wellcome")
+	@GetMapping("/welcome")
 	public String index() {
-		return "wellcome";
+		return "welcome";
 	}
 	
 	@GetMapping({"/","/login"})
@@ -42,6 +47,8 @@ public class LoginController {
 	        Model model, RedirectAttributes ra,
 	        @AuthenticationPrincipal Authentication authentication) throws ServletException {
 	    User user = (User) authentication.getPrincipal();
+	    com.example.demo.dao.entity.User userUpdate = 
+                userRepository.findByNombre(user.getUsername()).orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
 	     
 	    String oldPassword = request.getParameter("oldPassword");
 	    String newPassword = request.getParameter("newPassword");
@@ -61,10 +68,10 @@ public class LoginController {
 	        return "change_password";
 	         
 	    } else {
-	        userService.changePassword(user, newPassword);
-	        request.login(user.getNombre(), newPassword);
+	        userService.changePassword(userUpdate, newPassword);
+	        request.logout();
 	         
-	        return "redirect:/index";          
+	        return "redirect:/welcome";          
 	    }
 	     
 	}

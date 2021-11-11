@@ -12,10 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.dao.entity.User;
 
 @Component
 public class PasswordExpirationFilter implements Filter {
@@ -32,7 +31,7 @@ public class PasswordExpirationFilter implements Filter {
  
         User user = getLoggedInUser();
          
-        if (user != null && user.isPasswordExpired()) {
+        if (user != null && user.isCredentialsNonExpired()) {
                 showChangePasswordPage(response, httpRequest, user);           
         } else {
             chain.doFilter(httpRequest, response);         
