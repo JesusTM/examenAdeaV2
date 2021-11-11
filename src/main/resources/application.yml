@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: examen-adea   
+  datasource:
+      url: ${datasource.url}
+      driverClassName: ${datasource.driver}
+      username: ${datasource.user}
+      password: ${datasource.password}
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    hibernate.ddl-auto: none  
+
