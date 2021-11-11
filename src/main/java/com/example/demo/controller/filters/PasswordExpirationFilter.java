@@ -29,8 +29,6 @@ public class PasswordExpirationFilter implements Filter {
             chain.doFilter(request, response);
             return;
         }
-         
-        System.out.println("PasswordExpirationFilter");
  
         User user = getLoggedInUser();
          

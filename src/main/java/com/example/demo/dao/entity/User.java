@@ -62,9 +62,9 @@ public class User {
 	private LocalDateTime fechaModificacion;
 	
 	public boolean isPasswordExpired() {
-        if (this.fechaVigencia == null) return false;      
+        if (this.fechaModificacion == null) return false;      
          
-        return LocalDateTime.now().isAfter(fechaVigencia);
+        return LocalDateTime.now().isAfter(fechaModificacion);
     }
 
 	public String getPassword() {

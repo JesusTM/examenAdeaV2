@@ -24,8 +24,8 @@ public class UserService {
         String encodedPassword = bCryptPasswordEncoder.encode(newPassword);
         
         user.setPassword(encodedPassword);
-        user.setFechaModificacion(LocalDateTime.now());
-        user.setFechaVigencia(LocalDateTime.now().plusDays(30));
+        user.setFechaVigencia(LocalDateTime.now());
+        user.setFechaModificacion(LocalDateTime.now().plusMonths(1));
          
         customerRepo.save(user);
     }
