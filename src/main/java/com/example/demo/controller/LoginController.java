@@ -62,11 +62,9 @@ public class LoginController {
 	         
 	    } else {
 	        userService.changePassword(user, newPassword);
-	        request.logout();
-	        ra.addFlashAttribute("message", "You have changed your password successfully. "
-	                + "Please login again.");
+	        request.login(user.getNombre(), newPassword);
 	         
-	        return "redirect:/login";          
+	        return "redirect:/index";          
 	    }
 	     
 	}

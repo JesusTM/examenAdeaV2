@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
  
     @Autowired 
-    private UserRepository customerRepo;
+    private UserRepository userRepository;
      
     public void changePassword(User user, String newPassword) {
     	BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
@@ -27,6 +27,6 @@ public class UserService {
         user.setFechaVigencia(LocalDateTime.now());
         user.setFechaModificacion(LocalDateTime.now().plusMonths(1));
          
-        customerRepo.save(user);
+        userRepository.save(user);
     }
 }
