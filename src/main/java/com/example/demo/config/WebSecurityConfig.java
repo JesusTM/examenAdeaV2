@@ -13,9 +13,7 @@ import com.example.demo.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
-	BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter{	
 	@Autowired
     private UserDetailsServiceImpl userDetailsService;
 	
@@ -28,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http
             .authorizeRequests()
 	        .antMatchers(resources).permitAll()  
-	        .antMatchers("/","/login").permitAll()
+	        .antMatchers("/","/index").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()

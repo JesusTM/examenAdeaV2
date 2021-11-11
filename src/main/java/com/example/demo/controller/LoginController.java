@@ -22,14 +22,14 @@ public class LoginController {
 	@Autowired 
     private UserService userService;
 
-	@PostMapping("/index")
+	@GetMapping("/wellcome")
 	public String index() {
-		return "index";
+		return "wellcome";
 	}
 	
 	@GetMapping({"/","/login"})
 	public String menu() {
-		return "login";
+		return "index";
 	}
 	
 	@GetMapping("/change_password")
