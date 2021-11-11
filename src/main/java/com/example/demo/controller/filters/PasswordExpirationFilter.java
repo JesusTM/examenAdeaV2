@@ -32,7 +32,7 @@ public class PasswordExpirationFilter implements Filter {
          
         System.out.println("PasswordExpirationFilter");
  
-        User user = getLoggedInCustomer();
+        User user = getLoggedInUser();
          
         if (user != null && user.isPasswordExpired()) {
                 showChangePasswordPage(response, httpRequest, user);           
@@ -54,7 +54,7 @@ public class PasswordExpirationFilter implements Filter {
         return false;
     }     
     
-    private User getLoggedInCustomer() {
+    private User getLoggedInUser() {
         Authentication authentication
             = SecurityContextHolder.getContext().getAuthentication();
         Object principal = null;

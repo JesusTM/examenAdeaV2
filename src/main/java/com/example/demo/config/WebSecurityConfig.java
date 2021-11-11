@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http
             .authorizeRequests()
 	        .antMatchers(resources).permitAll()  
-	        .antMatchers("/","/index", "/change_password").permitAll()
+	        .antMatchers("/","/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -47,8 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
-        return bCryptPasswordEncoder;
+        return new BCryptPasswordEncoder(4);
     }
 	
     @Autowired
